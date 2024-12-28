@@ -1,0 +1,21 @@
+[] - ECS
+    [X] - Set up basic ECS
+    [] - Add removing of components dynamically
+    [] - Add removing of entities dynamically
+
+[] - Rendering system
+    [X] - Add sprite rendering
+
+[] - Collision system
+    [X] - Add AABB collision detection and resolution
+
+[] - Physics system
+    [X] - Add gravity which acts on an entity with mass, velocity and position
+    [] - Implement player jumping
+    [] - Fix max height to bottom of screen, might need to increase physics checks per time
+
+[] - Input sytem
+    [X] - Add basic movement input
+
+[] - Debug
+    [X] - Add a bounding box component
