@@ -1,5 +1,9 @@
 local MovementSystem = {}
 
+function MovementSystem:initialise()
+    EventManager:subscribe("playerJump", function (data) print(data) end)
+end
+
 function MovementSystem:update(registry, dt)
     local positions = registry.components["position"]
     local velocities = registry.components["velocity"]

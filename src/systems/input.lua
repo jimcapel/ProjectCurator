@@ -1,4 +1,5 @@
 local playerConfig = require("src.config.player")
+local EventManager = require("src.eventManager")
 
 local InputSystem = {}
 
@@ -28,6 +29,7 @@ function InputSystem:update(registry)
                 local onGround = onGroundValues[entity]
 
                 if velocity and onGround.value then
+                    EventManager:trigger("playerJump", "Test of event manager")
                     velocity.dy = -playerConfig.jumpVelocity
                 end
             end 

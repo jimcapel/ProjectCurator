@@ -26,3 +26,8 @@
 [] - Museum
 
 [] - Exploration
+
+[] - Event Manager
+    [X] - Set up basic event management system
+
+[] - Save to disk

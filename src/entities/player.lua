@@ -20,6 +20,7 @@ local function createPlayer(registry, x, y)
 
     -- debugging
     registry:addComponent(player, "boundingBox", BoundingBox:new())
+    
 
     return player
 end
