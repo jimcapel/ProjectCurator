@@ -22,3 +22,7 @@
 
 [] - Configuration
     [X] - Set up config files for entities
+
+[] - Museum
+
+[] - Exploration
