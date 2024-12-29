@@ -5,6 +5,7 @@ local Collider = require("src.components.collider")
 local BoundingBox = require("src.components.boundingBox")
 local Mass = require("src.components.mass")
 local Controller = require("src.components.controller")
+local OnGround = require("src.components.onGround")
 
 local function createPlayer(registry, x, y)
     local player = registry:createEntity()
@@ -15,6 +16,7 @@ local function createPlayer(registry, x, y)
     registry:addComponent(player, "collider", Collider:new())
     registry:addComponent(player, "mass", Mass:new(150))
     registry:addComponent(player, "controller", Controller:new())
+    registry:addComponent(player, "onGround", OnGround:new(true))
 
     -- debugging
     registry:addComponent(player, "boundingBox", BoundingBox:new())

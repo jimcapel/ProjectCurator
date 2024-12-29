@@ -25,21 +25,27 @@ local function resolveCollision(positionA, spriteA, velocityA, positionB, sprite
     )
 
     if overlapX < overlapY then
-        -- Resolve horizontal collision
+        -- resolve horizontal collision
         if positionA.x < positionB.x then
-            positionA.x = positionB.x - spriteA.image:getWidth() -- Push left
+            -- push left
+            positionA.x = positionB.x - spriteA.image:getWidth()
         else
-            positionA.x = positionB.x + spriteB.image:getWidth() -- Push right
+            -- push right
+            positionA.x = positionB.x + spriteB.image:getWidth()
         end
-        if velocityA then velocityA.dx = 0 end -- Stop horizontal movement
+        -- stop horizontal movement
+        if velocityA then velocityA.dx = 0 end
     else
-        -- Resolve vertical collision
+        -- resolve vertical collision
         if positionA.y < positionB.y then
-            positionA.y = positionB.y - spriteA.image:getHeight() -- Push up
+            -- push up
+            positionA.y = positionB.y - spriteA.image:getHeight()
         else
-            positionA.y = positionB.y + spriteB.image:getHeight() -- Push down
+            -- push down
+            positionA.y = positionB.y + spriteB.image:getHeight()
         end
-        if velocityA then velocityA.dy = 0 end -- Stop vertical movement
+        -- stop vertical movement
+        if velocityA then velocityA.dy = 0 end
     end
 end
 
@@ -48,11 +54,13 @@ function CollisionSystem:update(registry)
     local positions = registry.components["position"]
     local sprites = registry.components["sprite"]
     local velocities = registry.components["velocity"]
+    local onGroundValues = registry.components["onGround"]
 
     for entityA, colliderA in pairs(colliders or {}) do        
         local spriteA = sprites[entityA]
         local positionA = positions[entityA]
         local velocityA = velocities[entityA]
+        local onGround = onGroundValues[entityA]
 
         for entityB, colliderB in pairs(colliders or {}) do
             if entityA ~= entityB then
@@ -68,7 +76,18 @@ function CollisionSystem:update(registry)
                 end
             end
         end
+    
+        -- check if entity is on ground
+        if positionA.y + spriteA.image:getHeight() >= love.graphics.getHeight() then
+            velocityA.dy = 0
+            if onGround then
+                onGround.value = true
+            end
+        elseif onGround then
+            onGround.value = false
+        end
     end 
+
 
 end
 

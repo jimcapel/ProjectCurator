@@ -11,7 +11,7 @@
 
 [] - Physics system
     [X] - Add gravity which acts on an entity with mass, velocity and position
-    [] - Implement player jumping
+    [X] - Implement player jumping
     [] - Fix max height to bottom of screen, might need to increase physics checks per time
 
 [] - Input sytem
@@ -19,3 +19,6 @@
 
 [] - Debug
     [X] - Add a bounding box component
+
+[] - Configuration
+    [X] - Set up config files for entities

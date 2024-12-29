@@ -10,18 +10,22 @@ local CollisionSystem = require("src.systems.collision")
 local PhysicsSystem = require("src.systems.physics")
 local InputSystem = require("src.systems.input")
 
+-- config
+local playerConfig = require("src.config.player")
+
 local registry, movementSystem, renderSystem, collisionSystem, physicsSystem, inputSystem
 
 function love.load()
     registry = Registry:new()
+    
     movementSystem = MovementSystem
     renderSystem = RenderSystem
     collisionSystem = CollisionSystem
     physicsSystem = PhysicsSystem
     inputSystem = InputSystem
 
-    -- Create entities
-    createPlayer(registry, 100, 100)
+    -- create entities
+    createPlayer(registry, playerConfig.startingPosition.x, playerConfig.startingPosition.y)
     createPanda(registry, 300, 300)
 end
 

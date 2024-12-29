@@ -11,8 +11,7 @@ function MovementSystem:update(registry, dt)
         if velocity then
             position.x = position.x + velocity.dx * dt
             -- clamp y position to bottom of screen, need to increase physics checks really
-            local newYPosition = math.min(position.y, love.graphics.getHeight() - sprite.image:getHeight())
-            position.y = newYPosition + velocity.dy * dt
+            position.y = math.min(position.y + velocity.dy * dt, love.graphics.getHeight() - sprite.image:getHeight())
         end
     end
 end
