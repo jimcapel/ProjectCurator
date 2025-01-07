@@ -31,3 +31,6 @@
     [X] - Set up basic event management system
 
 [] - Save to disk
+
+[] - Camera
+    [X] - Set up camera to follow player

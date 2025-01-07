@@ -78,7 +78,7 @@ function CollisionSystem:update(registry)
         end
     
         -- check if entity is on ground
-        if positionA.y + spriteA.image:getHeight() >= love.graphics.getHeight() then
+        if positionA.y + spriteA.image:getHeight() >= love.graphics.getHeight() and velocityA then
             velocityA.dy = 0
             if onGround then
                 onGround.value = true

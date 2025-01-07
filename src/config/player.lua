@@ -1,7 +1,7 @@
 local playerConfig = {
     startingPosition = {
-        x = 100,
-        y = 100,
+        x = 1500,
+        y = 1500,
     },
     speed = 200,
     jumpVelocity = 600

@@ -9,7 +9,7 @@ function RenderSystem:draw(registry)
         local sprite = sprites[entity]
         if sprite then
             love.graphics.draw(sprite.image, position.x, position.y)
-             
+
             -- debugging
             if boundingBox and boundingBox[entity] then
                 love.graphics.rectangle("line", position.x, position.y, sprite.image:getWidth(), sprite.image:getHeight())

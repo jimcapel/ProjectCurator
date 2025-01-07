@@ -1,4 +1,4 @@
-local constants = require("src.config.constants")
+local CONSTANTS = require("src.config.constants")
 
 local PhysicsSystem = {}
 
@@ -19,7 +19,7 @@ function PhysicsSystem:update(registry, dt)
         if velocity and mass and sprite and onGround then
             -- apply gravity if entity not on ground
             if not onGround.value then
-                local gravity = constants.GRAVITY * mass.value
+                local gravity = CONSTANTS.GRAVITY * mass.value
                 velocity.dy = velocity.dy + gravity * dt
             end
         end

@@ -12,6 +12,8 @@ local function createPanda(registry, x, y)
 
     -- debugging
     registry:addComponent(panda, "boundingBox", BoundingBox:new())
+    
+    return panda
 end
 
 return createPanda

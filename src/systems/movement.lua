@@ -1,3 +1,5 @@
+-- local CONSTANTS = require("src.config.constants")
+
 local MovementSystem = {}
 
 function MovementSystem:initialise()
@@ -14,8 +16,9 @@ function MovementSystem:update(registry, dt)
         local sprite = sprites[entity]
         if velocity then
             position.x = position.x + velocity.dx * dt
+
             -- clamp y position to bottom of screen, need to increase physics checks really
-            position.y = math.min(position.y + velocity.dy * dt, love.graphics.getHeight() - sprite.image:getHeight())
+            -- position.y = math.min(position.y + velocity.dy * dt, CONSTANTS.WOLRD.HEIGHT - sprite.image:getHeight())
         end
     end
 end
