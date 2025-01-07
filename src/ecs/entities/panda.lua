@@ -1,7 +1,7 @@
-local Position = require("src.components.position")
-local Sprite = require("src.components.sprite")
-local Collider = require("src.components.collider")
-local BoundingBox = require("src.components.boundingBox")
+local Position = require("src.ecs.components.position")
+local Sprite = require("src.ecs.components.sprite")
+local Collider = require("src.ecs.components.collider")
+local BoundingBox = require("src.ecs.components.boundingBox")
 
 local function createPanda(registry, x, y)
     local panda = registry:createEntity()

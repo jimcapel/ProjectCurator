@@ -1,16 +1,16 @@
 -- entities
-local createPlayer = require("src.entities.player")
-local createPanda = require("src.entities.panda")
+local createPlayer = require("src.ecs.entities.player")
+local createPanda = require("src.ecs.entities.panda")
 
 -- systems
 local registry = require("src.ecs.registry")
-local movementSystem = require("src.systems.movement")
-local renderSystem = require("src.systems.render")
-local collisionSystem = require("src.systems.collision")
-local physicsSystem = require("src.systems.physics")
-local inputSystem = require("src.systems.input")
-local tileMapSystem = require("src.systems.tileMap")
-local cameraSystem = require("src.systems.camera")
+local movementSystem = require("src.ecs.systems.movement")
+local renderSystem = require("src.ecs.systems.render")
+local collisionSystem = require("src.ecs.systems.collision")
+local physicsSystem = require("src.ecs.systems.physics")
+local inputSystem = require("src.ecs.systems.input")
+local tileMapSystem = require("src.ecs.systems.tileMap")
+local cameraSystem = require("src.ecs.systems.camera")
 
 -- config
 local playerConfig = require("src.config.player")
