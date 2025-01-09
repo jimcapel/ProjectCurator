@@ -29,14 +29,11 @@ function love.load()
     movementSystem:initialise()
     cameraSystem:initialise(registry, playerEntity)
     tileMapSystem:loadMap()
-
-    -- init tileMap
-    -- tileMap = tileMapSystem:new(32, 1000, 1000)
 end
 
 function love.draw()
     cameraSystem:draw(function ()
-        tileMapSystem:draw(registry, 1)
+        tileMapSystem:draw(cameraSystem)
         renderSystem:draw(registry)
     end)
 end
@@ -47,5 +44,4 @@ function love.update(dt)
     movementSystem:update(registry, dt)
     collisionSystem:update(registry)
     cameraSystem:update(registry)
-
 end

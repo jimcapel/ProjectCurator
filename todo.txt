@@ -34,3 +34,9 @@
 
 [] - Camera
     [X] - Set up camera to follow player
+
+[] - Tile map
+    [X] - Create a basic tile map system
+    [X] - Only render what the screen can see
+    [] - Collision with certain tiles
+    [] - Generate tile map from a noise function

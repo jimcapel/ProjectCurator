@@ -7,8 +7,6 @@ local TileMapSystem = {
 function TileMapSystem:loadMap(
     -- _, tileSprites
 )
-
-
     local tileMap = {}
     for x = 1, 100 do
         tileMap[x] = {}
@@ -21,31 +19,27 @@ function TileMapSystem:loadMap(
     -- self.tileSprites = tileSprites 
 end
 
--- need to change this to screen size and y direction
-local function shouldRenderTile(xTile, yTile, xPosition, yPosiiton)
-    if ((xTile < xPosition and xTile > xPosition - 100) 
-        or (xTile > xPosition and xTile < xPosition + 150))
-        and (
-            (yTile < yPosiiton and yTile > yPosiiton - 100)
-            or (yTile > yPosiiton and yTile < yPosiiton + 200)
-        )
+-- if tile draw origin is within screen relative to camera position, then draw tile
+local function isTileOnScreen(xTile, yTile, cameraXPosition, cameraYPosition, screenWidth, screenheight, tileSize)
+    if (xTile < (cameraXPosition + screenWidth / 2) and xTile > (cameraXPosition - tileSize - screenWidth / 2))
+        and ((yTile < (cameraYPosition + screenheight / 2) and yTile > (cameraYPosition - tileSize - screenheight / 2)))
     then
         return true
     end
      return false
 end
 
-function TileMapSystem:draw(registry, entity)
-    local positions = registry.components["position"]
-    local position = positions[entity]
-
+function TileMapSystem:draw(cameraSystem)
     local image = love.graphics.newImage("assets/sprites/grassBlock.png")
+
+    local screenWidth, screenHeight = love.graphics.getDimensions()
+    local cameraXPosition, cameraYPosition = cameraSystem.camera:getPosition()
 
     for y = 1, #self.tileMap do
         for x = 1, #self.tileMap do
             local xPos = (x - 1) * self.tileSize
             local yPos = (y - 1) * self.tileSize
-            if (shouldRenderTile(xPos, yPos, position.x, position.y)) then
+            if (isTileOnScreen(xPos, yPos, cameraXPosition, cameraYPosition, screenWidth, screenHeight, self.tileSize)) then
                 love.graphics.draw(image, xPos, yPos, 0, 0.128, 0.128)
             end
         end
