@@ -15,11 +15,11 @@ local cameraSystem = require("src.ecs.systems.camera")
 -- config
 local playerConfig = require("src.config.player")
 
+--constants
+local CONSTANTS = require("src.config.constants")
+
 function love.load()
     registry = registry:new()
-
-    -- load tilemap
-    tileMapSystem:loadMap({{1 , 1}}, {})
 
     -- create entities
     local playerEntity = createPlayer(registry, playerConfig.startingPosition.x, playerConfig.startingPosition.y)
@@ -28,13 +28,16 @@ function love.load()
     -- init systems
     movementSystem:initialise()
     cameraSystem:initialise(registry, playerEntity)
+    tileMapSystem:loadMap()
 
+    -- init tileMap
+    -- tileMap = tileMapSystem:new(32, 1000, 1000)
 end
 
 function love.draw()
     cameraSystem:draw(function ()
+        tileMapSystem:draw(registry, 1)
         renderSystem:draw(registry)
-        tileMapSystem:draw()
     end)
 end
 
