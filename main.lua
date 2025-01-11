@@ -43,5 +43,6 @@ function love.update(dt)
     physicsSystem:update(registry, dt)
     movementSystem:update(registry, dt)
     collisionSystem:update(registry)
+    collisionSystem:updateCollisionsWithTileMap(registry, tileMapSystem)
     cameraSystem:update(registry)
 end

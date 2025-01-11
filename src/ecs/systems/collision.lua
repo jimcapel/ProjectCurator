@@ -87,8 +87,32 @@ function CollisionSystem:update(registry)
             onGround.value = false
         end
     end 
+end
 
+function CollisionSystem:updateCollisionsWithTileMap(registry, tileMapSystem)
+    local colliders = registry.components["collider"]
+    local velocities = registry.components["velocity"]
+    local positions = registry.components["position"]
 
+    local tileSize = tileMapSystem.tileSize
+
+    for entity, _ in pairs(colliders or {}) do
+        local velocity = velocities[entity]
+        local position = positions[entity]
+
+        if velocity and position then
+            local tileX = math.floor((position.x + velocity.dx) / tileSize)
+            local tileY = math.floor((position.y + velocity.dy) / tileSize)
+
+            local spriteIndex = tileMapSystem.tileMap[tileX][tileY]
+
+            print("Next sprite", tileMapSystem.tileSprites[spriteIndex].type, position.x, position.y, tileX, tileY)
+
+            if tileMapSystem.tileSprites[spriteIndex].isSolid then
+                print("Collision")
+            end
+        end
+    end
 end
 
 return CollisionSystem

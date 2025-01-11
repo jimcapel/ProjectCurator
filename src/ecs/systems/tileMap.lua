@@ -11,11 +11,27 @@ function TileMapSystem:loadMap(
     for x = 1, 100 do
         tileMap[x] = {}
         for y = 1, 100 do
-            tileMap[x][y] = 1
+            if y < 51 then
+                tileMap[x][y] = 2
+            else
+                tileMap[x][y] = 1
+            end
         end
     end
     
     self.tileMap = tileMap 
+    self.tileSprites = {
+        [1] = {
+            sprite = love.graphics.newImage("assets/sprites/dirt.png"),
+            isSolid = true,
+            type = "dirt"
+        },
+        [2] = {
+            sprite = love.graphics.newImage("assets/sprites/sky.png"),
+            isSolid = false,
+            type = "air"
+        },
+    }
     -- self.tileSprites = tileSprites 
 end
 
@@ -30,8 +46,6 @@ local function isTileOnScreen(xTile, yTile, cameraXPosition, cameraYPosition, sc
 end
 
 function TileMapSystem:draw(cameraSystem)
-    local image = love.graphics.newImage("assets/sprites/grassBlock.png")
-
     local screenWidth, screenHeight = love.graphics.getDimensions()
     local cameraXPosition, cameraYPosition = cameraSystem.camera:getPosition()
 
@@ -40,11 +54,11 @@ function TileMapSystem:draw(cameraSystem)
             local xPos = (x - 1) * self.tileSize
             local yPos = (y - 1) * self.tileSize
             if (isTileOnScreen(xPos, yPos, cameraXPosition, cameraYPosition, screenWidth, screenHeight, self.tileSize)) then
-                love.graphics.draw(image, xPos, yPos, 0, 0.128, 0.128)
+                local spriteIndex = self.tileMap[x][y]
+                love.graphics.draw(self.tileSprites[spriteIndex].sprite, xPos, yPos, 0, 0.49, 0.49)
             end
         end
     end
 end
 
 return TileMapSystem
-

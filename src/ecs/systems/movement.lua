@@ -19,6 +19,7 @@ function MovementSystem:update(registry, dt)
 
             -- clamp y position to bottom of screen, need to increase physics checks really
             -- position.y = math.min(position.y + velocity.dy * dt, CONSTANTS.WOLRD.HEIGHT - sprite.image:getHeight())
+            position.y = position.y + velocity.dy * dt
         end
     end
 end
